@@ -4,7 +4,7 @@
 
 ## 今回利用するデータ
 - GSE15515 ：Transcriptome Profiles of Differentiated arabidopsis Leaf Cells and Dedifferentiating Protoplasts of Ler and kyp mutant （シロイヌナズナ Ler および kyp 変異体における分化した葉細胞と脱分化したプロトプラストでのトランスクリプトーム [全遺伝子発現] プロファイル） https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15515
-- 今回はこれを加工したデータを用いる ([GSE15515.for_lecture.txt](https://github.com/chalkless/lecture/raw/master/biostats/data/GSE15515.for_lecture.tsv))。あらかじめダウンロードしておく。
+- 今回はこれを加工したデータを用いる ([GSE15515.for_lecture.tsv](https://github.com/chalkless/lecture/raw/master/biostats/data/GSE15515.for_lecture.tsv))。あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 ### 生物学的背景
 - 多細胞生物は、受精卵から細胞分裂して、人間であれば血球、神経、皮膚などなどさまざまな細胞に特化していく。この特化のことを分化という。
 - 分化は不可逆的で、動物の場合は一般的には血球や皮膚などに分化した細胞から、未分化状態には戻れない。（植物の場合は、薬品処理をしたりするなどすると戻れる）
