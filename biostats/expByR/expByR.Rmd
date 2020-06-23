@@ -1,7 +1,7 @@
 ---
 title: "expByR"
 author: "Nakazato T."
-date: "2019/6/12"
+date: "2020/6/23"
 output: html_document
 ---
 
@@ -11,21 +11,19 @@ output: html_document
 （あくまでRの勉強用なので、一部 簡略化しているところがある）
 （参考までに同じことをExcelでやった「Excelでなぞる遺伝子発現解析」もあります）
 
-## [参考] Rで遺伝子発現データを扱う際の環境設定
-- Rで遺伝子発現解析を行うには、専用のライブラリをインストールします。ライブラリは、本来なら自分で数十行、数百行のコマンドを入力しなければならないのをあらかじめ誰かが数行程度で実行できるようにまとめてくれたものです。遺伝子発現データ解析用のライブラリはBioConductorと言います。もともとマイクロアレイデータ解析用のものでしたが、最近はNGS（次世代シーケンサー用）のライブラリもあります（というかえてして流用もできるのです）
-```{r setup, include=FALSE}
-## この文章の設定
-#（一応 残してある）
+## 背景
+### 今回 利用するデータ
+- GSE15515 ：Transcriptome Profiles of Differentiated arabidopsis Leaf Cells and Dedifferentiating Protoplasts of Ler and kyp mutant （シロイヌナズナ Ler および kyp 変異体における分化した葉細胞と脱分化したプロトプラストでのトランスクリプトーム [全遺伝子発現] プロファイル） https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15515
+- 今回はこれを加工したデータを用いる ([GSE15515.for_lecture.tsv](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/data/GSE15515.for_lecture.tsv))。あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 
-knitr::opts_chunk$set(echo = TRUE, tidy = FALSE)
+### 生物学的背景
+- 多細胞生物は、受精卵から細胞分裂して、人間であれば血球、神経、皮膚などなどさまざまな細胞に特化していく。この特化のことを分化という。
+分化は不可逆的で、動物の場合は一般的には血球や皮膚などに分化した細胞から、未分化状態には戻れない。（植物の場合は、薬品処理をしたりするなどすると戻れる）
+- 今回は分化した葉の細胞と、未分化状態に戻したプロトプラスト（薬品処理して細胞壁を破壊し、未分化状態に戻した）で遺伝子の発現状況を比較して、葉の状態のみ、プロトプラストの状態のみで発現している（＝働く）遺伝子はどういう機能があるのか、というのを確認する。
+- （はしょって言えば）これのヒト版が京大・山中先生がノーベル賞をとったiPS細胞の話（成熟した細胞の多能性を持つ細胞への初期化）である（今回のと同様に解析したければ、元データは https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18226 からダウンロードできる。が、次に述べる加工は必要）
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("GEOquery")
-library("GEOquery")
-```
-  - 以前はsourceコマンドで```source("http://www.bioconductor.org/biocLite.R") ```でインストールしていましたが、2019年現在、BiocManagerを使うように変わりました。
 
+## Rを使う準備編
 - 本格的にRを使うことになると、ファイルの読み込みや保存を行うようになります。そのための場所をworking directoryと言います。getwd()で確認できます。
 ```{r}
 getwd()
@@ -39,64 +37,8 @@ getwd()
 ```{r eval=FALSE, include=FALSE}
 setwd("~/r/expByR")
 ```
-  -（この操作は環境を変更するため、実行できないようにしています。実行するときは eval=FALSE を削ってから実行のこと）
-  - ファイルのリストが右下のウインドウにあるので、それが利用可能かもしれません。
-
-
-## GEOからの遺伝子発現データの取得
-- GEO (Gene Expression Omnibus) は、NCBIが集めている遺伝子発現のデータベース
-  - もともとはマイクロアレイのデータベースだったがNGS（次世代シーケンサー）が出てきてRNA-Seqのデータもここに入ることになり、今は遺伝子発現データのデータベースとなっている。
-  - てなわけで今はNGSデータの方がはやりなのだが、NGSデータの解析自体で1回の講義になってしまうレベルだし、コマンドラインや計算機リソースを駆使するような計算なので、今回はある程度そのあたりを計算済ということでマイクロアレイのデータを例とする。
-- あらためまして、GEOのサイトにアクセスするのだが、今回は混乱を避けるために測定データセットを検索するサイトを示しておく。 https://www.ncbi.nlm.nih.gov/gds/
-- 生物種名や生命現象を検索ボックスに入れて、どのようなデータがあるか楽しんでみましょう
-  - 詳細まで見るといくつかのパターンがあることがわかります
-    - 正常と疾患/変異株/薬剤処理など状態を2群間で比較するデータ
-    - ある状態下でのさまざまな臓器など多サンプル間で比較するデータ
-    - 薬剤処理後の時間経過ごと、発生ステージなどなどの時系列データ
-- 今回は、GSE15515 ：Transcriptome Profiles of Differentiated arabidopsis Leaf Cells and Dedifferentiating Protoplasts of Ler and kyp mutant （シロイヌナズナ Ler および kyp 変異体における分化した葉細胞と脱分化したプロトプラストでのトランスクリプトーム [全遺伝子発現] プロファイル）を用いることとします。 
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15515
-- Samples の項目を見ると、どういうサンプル（試料・材料）を使って実験をしたかが書いてあります
-  - 上の比較データか、時系列データか意識して、どれがセットか考えるといいでしょう
-  - 場合によっては同じようなデータを何回もとっているものがあります。
-    - 同じサンプルを何回か測定：technical replica。複数やることで実験操作を相殺する
-    - 別個体で何回か測定：biological replica。複数やることで個体差を相殺する
-- その下のところに実際の遺伝子発現データがダウンロードできる形で置いてある
-  - SOFT formatted family file(s)
-  - Series Matrix File(s)
-
-- これらのファイルは単純な表にはなっていない（データの前に実験情報が書かれている）のだが、Rだとマイクロアレイ用のパッケージをインストールすることでデータを読み込んで加工することができる。
-```{r}
-gse_in <- getGEO("GSE15515")
-```
-
-- データ部分だけを取り出して別途保存しておく。
-
-```{r}
-platforms <- sapply(gse_in, annotation)
-for(i in 1:length(platforms)){
-  file_data <- paste("GSE15515_", platforms[i], ".txt", sep = "")
-  write.exprs(gse_in[[i]], file=file_data)
-}
-```
-
-- [参考] 今はファイルに保存してしまったが、Rオブジェクトにするには以下のようにしておく
-```{r}
-data_geo <- exprs(gse_in[[i]])
-```
-  - これを見ると列ラベルがサンプルID（GSM388810など）になってしまっているが、登録者が書いたサンプル情報を得るには以下のようにする。
-```{r}
-gse_labels <- pData(phenoData(gse_in[[i]]))
-titles <- gse_labels[1]
-titles
-```
-
-- 今回はこのデータをもとに講義用に加工したデータ([GSE15515.for_lecture.txt](../data/GSE15515.for_lecture.txt))を使って説明する。（のでダウンロードしておく）
-
-```{r}
-file_use <- "GSE15515.for_lecture.txt"
-```
-
-  - Github から落とす場合は、リンクをたどったのち、ダウンロードボタンを右クリックしてリンク先を保存（もしくはそれに類するもの）を選んで保存する。
+  -（この操作は環境を変更するため、実行できないようにしています。実行するときは eval=FALSE を削ってから実行のこと。もしくはRStudioだと画面左下の部分にConsoleがあるので、そこで実行するのがいいかもしれない）
+  - RStudioだとファイルのリストが右下のウインドウにあるので、それが利用可能かもしれません。
 
 
 ## 解析の目標
@@ -107,10 +49,15 @@ file_use <- "GSE15515.for_lecture.txt"
 
 ### ファイルを開く
 - 今回はタブ区切り（tsv: tab separated value）ファイル。
+- 改めてだが、今回はGEOから取得したデータを加工した ([GSE15515.for_lecture.tsv](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/data/GSE15515.for_lecture.tsv)を使って説明する。（ので右クリックでダウンロードしておく）
 ```{r}
+file_use <- "GSE15515.for_lecture.tsv"
 data <- read.table(file_use, header = TRUE, row.names = 1, sep = "\t")
 ```
-  - ファイルが開けない場合は、```getwd()```でRがどこを確認しに行っているか確認のこと。ここの結果に開きたいファイルを置くか、上の方にある```setwd("...")```を書き換えて実行しファイルが見えるようにする。
+  - ファイルが開けない場合（「コネクションを開くことができません」「No such file or directory」といったメッセージの場合）は、```getwd()```でRがどこを確認しに行っているか確認のこと。ここの結果に開きたいファイルを置くか、上の方にある```setwd("...")```を書き換えて実行しファイルが見えるようにする。
+```{r}
+getwd()
+```
   - Windowsでいうところのメモ帳で開くような（専門的にはエディターと呼ばれるソフトで開くような。人間の読める）ファイルをテキストファイルというが、Rで扱うようなファイルにはタブ区切りの他にCSVファイル（カンマ区切り：comma separated value）がある。その場合、sep（区切り文字）を\tでなく , にするか、read.tableでなくread.csvを用いる。
   - header は、1行目に列ラベルがついているかどうか。ついていればTRUE、ついていなければFALSE
   - row.names = 1: 1列目をデータでなく、行の名前として用いる（これを指定しないと、Rが勝手に1から行の名前を振っていって、この場合、プローブIDもデータとして扱われる）
@@ -191,6 +138,7 @@ hist(data$diff, breaks = 120, col = "pink")
 ```
 - hist関数でヒストグラムが描画される
   - 0 を中心に左右対称になっている
+  - breaks の数は柱を何本立てるかを指定していると思ってください。
 - 実際のデータで分布がどうなっているかも散布図 (scatter plot) で確認することとする
 ```{r}
 plot(data$log_leaf, data$log_protoplast, col = "orange")
