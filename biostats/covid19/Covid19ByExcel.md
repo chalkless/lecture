@@ -10,7 +10,6 @@
   - 元のファイルはJSON形式というのですが、Excelだと処理しにくいのでCSVに形式変更している
 ```
 $ cat Covid19JapanAll.json | jq -r '.itemList[]|[.date, .name_jp, .npatients]|@csv'> Covid19JapanAll.csv
-  - このCSV変換したファイルを使うのでダウンロードしておく。[Covid19JapanAll.csv](Covid19JapanAll.csv)
 ```
-
+  - このCSV変換したファイルを使うのでダウンロードしておく。[Covid19JapanAll.csv](Covid19JapanAll.csv)
 
