@@ -3,18 +3,11 @@
 
 ## [参考] 元データの入手と加工
 - 元データ
-  - （内閣官房）新型コロナウイルス感染症対策 https://corona.go.jp/dashboard/
-  - ここにある全国の感染者数データ（JSON形式）：https://opendata.corona.go.jp/api/Covid19JapanAll →[Covid19JapanAll.json](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/Covid19JapanAll.json):2021年6月14日にダウンロードした元ファイル（ここでは使わない）
-  - [参考] 最新の都道府県別累積陽性者数：https://data.corona.go.jp/converted-json/covid19japan-all.json
-- [参考] データの加工
-  - 元のファイルはJSON形式というのですが、Excelだと処理しにくいのでCSVに形式変更している
+  - NHK 新型コロナウイルス特設サイト(https://www3.nhk.or.jp/news/special/coronavirus/data/)で配布されている各都道府県ごとの感染者数の推移データ(2021/6/14ダウンロード) ：[https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv](nhk_news_covid19_prefectures_daily_data.csv)
+  - [愚痴] 厚労省とか内閣官房とかオープンデータとか言いながらろくなデータないし。都道府県別のデータだと累積データとか（それはここで毎日の陽性者数を計算する演習をしろってことですか）
 ```
-$ cat Covid19JapanAll.json | jq -r '.itemList[]|[.date, .name_jp, .npatients]|@csv'> Covid19JapanAll.csv
-```
-  - このCSV変換したファイルを使うのでダウンロードしておく。[Covid19JapanAll.csv](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/Covid19JapanAll.csv)
 
 ## Excelでファイルを開く
-### ファイルを開く
 - Excelを立ち上げる
 - 今回はカンマ区切り（csv: comma separated value）なので、テキストファイル（Windowsでいうところのメモ帳で開くファイル。Excel形式でないもの）として読み込む
   - Windowsの場合：シートの上にファイルをドラッグ&ドロップすると開くようです。もしくは、ファイル > 開く から。CSVだと型式を気にせず読み込めると思いますが、ファイルの形式をExcel形式でなくカンマ区切りファイル（CSV）（もしくはテキストファイル）を選択するとファイルのリストに表示される（or 選択できるようになる）
@@ -24,4 +17,14 @@ $ cat Covid19JapanAll.json | jq -r '.itemList[]|[.date, .name_jp, .npatients]|@c
 - 1つのセルに全部のデータが入ってしまった時：ファイル > インポート > CSVファイル > ファイルウィザード画面1 > ファイルウィザード画面2 と進み、フィールドの区切り文字指定でカンマだけにチェックを入れる。プレビュー欄で各データの間に縦線が入っているのを確認する。
 - 無事に開ける
   - ![データのファイルを開いた結果](./images/excel_openfile.png)
-  
+- **[ファイルの保存]** 何はともあれファイルの保存。ファイル > **名前をつけて保存** で Excelブックとして保存
+  - 普通に（テキストファイルとして）保存してしまうと、関数やグラフが保存されないのでExcelブックの形式で保存する。
+
+## グラフ作成・可視化の下準備
+- 全体としては2万行程度のデータだが、今回は東京都の感染者の推移と最新の都道府県別の感染者の可視化を行う
+
+### フィルター機能によるデータの絞り込み
+- 大半は使わないデータなので、それを絞り込むためにフィルター機能を使う。
+- フィルター機能を使うときは1行目にタイトル行をつけておくと便利である。
+- 1行目のどこかのセルを選択してホームタブ > （割と右の方の）挿入 > シートの行を挿入
+- 行が挿入されたので、列のラベルをつける。ここでは日付、都道府県名、陽性者数とする。
