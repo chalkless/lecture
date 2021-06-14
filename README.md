@@ -43,7 +43,7 @@ $ cp /Volumes/XXX/PM-F-*_?.fasta.gz ./
 $ cp /Volumes/XXX/PM-F-*.fasta.gz ./
 ```
 - ? ：任意の一文字。この場合は1と2
-- * ：任意の何文字か。この場合はFBとMG。（下の行だとFB_1とFB_2と...）
+- \* ：任意の何文字か。この場合はFBとMG。（下の行だとFB_1とFB_2と...）
 
 
 ファイルの中身を確認する
@@ -65,3 +65,40 @@ $ tail ファイル名
 行数を確認
 $ wc -l ファイル名
 ```
+
+## Google Colaboratory
+- 通称：Google Colab
+- 参考サイト
+- やり方
+  - Google Colabでググる
+  - 直接だと https://colab.research.google.com/
+  - バックエンドをRにするのに https://colab.research.google.com/notebook#create=true&language=r にアクセスするのが一番手っ取り早い
+  - ノートブックを新規作成（メニューのファイルからなど）
+  - Untitled0.ipynb のようなファイルができる
+  - ファイル名を変える
+  - 一旦ファイルをファイル > ダウンロード > .ipynbをダウンロード
+  - ファイルを書き換える
+  ```
+  ### 変更前
+      "kernelspec": {
+        "name": "python3",
+	"display_name": "Python 3"
+      },
+      ...
+  ```
+  ```
+  ### 変更後
+      "kernelspec": {
+        "name": "ir",
+	"display_name": "R"
+      },
+      ...
+  ```
+  - Google Colabに戻って今のファイルをアップロード
+  - ランタイム > ランタイムのタイプを変更でRになっていればOK
+  - 画面左のフォルダマークからデータをアップロード(GSE18226.for_exercise.slim.tsv)
+  - 
+
+
+
+
