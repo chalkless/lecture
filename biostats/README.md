@@ -4,7 +4,7 @@
 
 - [Excelでなぞる遺伝子発現解析](exp/expByExcel.md)：普通はプログラミングかR言語でするような遺伝子発現解析を、Excelで試しに（できる部分だけ）やってみようという試み
 - [R言語で遺伝子発現解析](exp/expByR.Rmd)：マイクロアレイデータを例にRで遺伝子発現解析をしてみた（内容は上のExcelでなぞる遺伝子発現解析と同じ）。RStudioで開く用（Rmarkdownで記述）
-- R言語で遺伝子発現解析(Google Colab編)：上のR言語で遺伝子発現解析と中身は同様。RStudioでなくGoogle Colaboratory (Google Colab)で開く用。ipynbファイル。（作成中）
+- [R言語で遺伝子発現解析(Google Colab編)](exp/expByROnGColab.ipynb)：上のR言語で遺伝子発現解析と中身は同様。RStudioでなくGoogle Colaboratory (Google Colab)で開く用。ipynbファイル。（作成中）
 
 - [Excelで可視化する新型コロナデータ](covid19/Covid19ByExcel.md)：Covid-19の患者数の推移をExcelで取り込んである都道府県の患者数の推移を折れ線グラフにしてみたり、ある日の患者数を都道府県別に棒グラフや円グラフ、日本地図にマップする
 - Rで可視化する新型コロナデータ：上のR版。作成中
