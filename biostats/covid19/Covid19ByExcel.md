@@ -3,7 +3,7 @@
 
 ## [参考] 元データの入手と加工
 - 元データ
-  - NHK 新型コロナウイルス特設サイト( https://www3.nhk.or.jp/news/special/coronavirus/data/ )で配布されている各都道府県ごとの感染者数の推移データ(2021/6/14ダウンロード) ：https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv]
+  - NHK 新型コロナウイルス特設サイト( https://www3.nhk.or.jp/news/special/coronavirus/data/ )で配布されている各都道府県ごとの感染者数の推移データ(2021/6/14ダウンロード) ：https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv
   - [愚痴] 厚労省とか内閣官房とかオープンデータとか言いながらろくなデータないし。都道府県別のデータだと累積データとか（それはここで毎日の陽性者数を計算する演習をしろってことですか）
 
 ## Excelでファイルを開く
