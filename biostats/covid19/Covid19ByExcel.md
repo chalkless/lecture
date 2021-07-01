@@ -3,11 +3,12 @@
 
 ## [参考] 元データの入手と加工
 - 元データ
-  - NHK 新型コロナウイルス特設サイト(https://www3.nhk.or.jp/news/special/coronavirus/data/)で配布されている各都道府県ごとの感染者数の推移データ(2021/6/14ダウンロード) ：[https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv](nhk_news_covid19_prefectures_daily_data.csv)
+  - NHK 新型コロナウイルス特設サイト( https://www3.nhk.or.jp/news/special/coronavirus/data/ )で配布されている各都道府県ごとの感染者数の推移データ(2021/6/14ダウンロード) ：https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv]
   - [愚痴] 厚労省とか内閣官房とかオープンデータとか言いながらろくなデータないし。都道府県別のデータだと累積データとか（それはここで毎日の陽性者数を計算する演習をしろってことですか）
 
 ## Excelでファイルを開く
 - Excelを立ち上げる
+  - クラウド版のExcel（ブラウザで開く方）だとCSV（に限らずタブ区切りなどExcel形式[.xlsx]以外すべて）のファイルの読み込みができないので、自分のコンピューターにインストールしたExcelを使うか、ファイルの保存までをGoogle Spreadsheetでやって、Excelで開き直すこと。
 - 今回はカンマ区切り（csv: comma separated value）なので、テキストファイル（Windowsでいうところのメモ帳で開くファイル。Excel形式でないもの）として読み込む
   - Windowsの場合：シートの上にファイルをドラッグ&ドロップすると開くようです。もしくは、ファイル > 開く から。CSVだと型式を気にせず読み込めると思いますが、ファイルの形式をExcel形式でなくカンマ区切りファイル（CSV）（もしくはテキストファイル）を選択するとファイルのリストに表示される（or 選択できるようになる）
   - Macの場合：ファイル > 開く から。もしくは ファイル > インポート > CSVファイル
