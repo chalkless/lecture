@@ -7,7 +7,10 @@
 - 日本語訳：Bacillus subtilis（枯草菌・こそうきん）NBRC 16449株における日本の伝統的な大豆発酵食品 納豆の生産と同条件下における茹でた大豆の表面での成長時のトランスクリプトーム（全遺伝子発現）解析
 - 今回はこれを加工したデータを用いる ([Bsubtilis_exp.for_lec.0613.txt](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0613.txt))。あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 ### 生物学的背景
-- あとで書く
+- 生物の遺伝情報はDNAに記録されていて（＝コードされている）、必要な時に必要な遺伝子を使うしくみになっている
+- たとえば、今回の枯草菌では4.12Mb（mega base。megaは100万。baseは塩基対。ようするに412万塩基対）のDNAを持っていて、およそ4500の遺伝子を持っている（出展元：[NCBI Genome](https://www.ncbi.nlm.nih.gov/genome/?term=txid86029[Organism:noexp])）
+- 「必要な時に必要な遺伝子を使うしくみになっている」とは、たとえば植物なら、葉になるときは光合成のための遺伝子発現が必要だが、根だと光合成の遺伝子発現は不要（なので不要ならmRNAが転写されない、ということ）。今回は微生物だが、たとえば、アミノ酸が周りに豊富にあれば、わざわざアミノ酸を生合成するための酵素は発現しなくてよいが、飢餓状態なら発現が必要、ということ。
+- 今回は、液体培地と寒天培地とゆでた大豆の表面という3つの状態だが（ここではそのうち2つの状態について扱うが）これらの状態はどういう遺伝子変化をもたらすだろうか???
 
 ### 今回の対象となる生物について
 - いわゆる納豆菌のデータ。学名は Bacillus subtilis subsp. natto。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。Bacillus subtilis自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomyの当該ページ](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=86029&lvl=3&lin=f&keep=1&srchmode=1&unlock)
