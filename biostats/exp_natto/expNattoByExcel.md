@@ -9,7 +9,13 @@
 ### 生物学的背景
 - あとで書く
 
+### 今回の対象となる生物について
+- いわゆる納豆菌のデータ。学名は Bacillus subtilis subsp. natto。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。Bacillus subtilis自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomyの当該ページ](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=86029&lvl=3&lin=f&keep=1&srchmode=1&unlock)
+- NBRCはBiological Resource Center, NITE (National Institute of Technology and Evaluation) （日本語名：（独）製品評価技術基盤機構 バイオテクノロジーセンター）のこと。経産省系の独法であるNITE（ナイト）では企業等のもっている有用微生物を寄託・譲渡してもらい、（半永久的に）保存するとともに、他の企業等に提供して産業に役立てている。
+- 今回の納豆菌もNBRCのコレクションとしてストックしてある。
+
 ### [補足] GEOからの遺伝子発現データの取得
+- 今回のデータは元データを加工して解析できるようにしているが、その「元データの加工」の部分をこのセクションは書いている（ので、ここGitHubにアップされているデータを使う分にはここの操作はしなくてよい）
 - 今回は、すぐにExcelで開けるように加工済のデータになっているが、元々の配布されているデータは別形式（＋実験データだけでなく実験条件の情報付き）なのでそのままでは使えない。
 - GEO (Gene Expression Omnibus) は、NCBIが集めている遺伝子発現のデータベース
   - もともとはマイクロアレイのデータベースだったがNGS（次世代シーケンサー）が出てきてRNA-Seqのデータもここに入ることになり、今は遺伝子発現データのデータベースとなっている。
