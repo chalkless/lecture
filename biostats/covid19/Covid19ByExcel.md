@@ -6,7 +6,8 @@
   - NHK 新型コロナウイルス特設サイト( https://www3.nhk.or.jp/news/special/coronavirus/data/ )で配布されている（されていた）各都道府県ごとの感染者数の推移データ：https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/nhk_news_covid19_prefectures_daily_data.csv
   - ↑ これを右クリックして名前をつけて保存などする。
   - 2020/1/16～2022/9/27まで。それ以降は全数把握の簡略化にあわせて発表主体が各都道府県から厚労省になったためNHKからは公表されなくなった。
-  - ~~厚労省とか内閣官房とかオープンデータとか言いながらろくなデータないし。都道府県別のデータだと累積データとか（それはここで毎日の陽性者数を計算する演習をしろってことですか）~~ → 2021年に[厚労省のオープンデータのページ](https://www.mhlw.go.jp/stf/covid-19/open-data.html)からデータが公開されることとなった。が、5類移行に伴ってそれも2023/5/7にデータの更新が終了となった。（[厚労省提供・新規陽性者数の推移（日別）](https://covid19.mhlw.go.jp/public/opendata/newly_confirmed_cases_daily.csv) ：ここにもアップ済）
+  - ~~厚労省とか内閣官房とかオープンデータとか言いながらろくなデータないし。都道府県別のデータだと累積データとか（それはここで毎日の陽性者数を計算する演習をしろってことですか）~~ → 2021年に[厚労省のオープンデータのページ](https://www.mhlw.go.jp/stf/covid-19/open-data.html)からデータが公開されることとなった。が、5類移行に伴ってそれも2023/5/7にデータの更新が終了となった。（[厚労省提供・新規陽性者数の推移（日別）](https://covid19.mhlw.go.jp/public/opendata/newly_confirmed_cases_daily.csv) ）
+  - ここにもアップ済：https://raw.githubusercontent.com/chalkless/lecture/master/biostats/covid19/newly_confirmed_cases_daily.csv
 
 ## Excelでファイルを開く
 - Excelを立ち上げる
@@ -23,7 +24,7 @@
   - 普通に（テキストファイルとして）保存してしまうと、関数やグラフが保存されないのでExcelブックの形式で保存する。
 
 ## グラフ作成・可視化の下準備
-- 全体としては25000行程度のデータだが、今回は東京都の感染者の推移と最新の都道府県別の感染者の可視化を行う
+- 全体としては46000行程度のデータだが、今回は東京都の感染者の推移と最新の都道府県別の感染者の可視化を行う
 
 ### フィルター機能によるデータの絞り込み
 - 大半は使わないデータなので、それを絞り込むためにフィルター機能を使う。
