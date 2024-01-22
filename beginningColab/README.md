@@ -19,7 +19,7 @@
   * とりあえず開いてみて、画面タイトルの次の行の「ランタイム」から「ランタイムのタイプを変更する」でランタイムのタイプをPython3からRに変更してもよい
 
 ## 別ページに書いた情報
-* [Google Colaboratoryでのファイルのアップロード](../misc/ColabUploadFile.md)
+* [Google Colaboratoryでのファイルのアップロード](./ColabUploadFile.md)
 * [はじめてPythonで統計解析をしてみる（Google Colab編）](./startPython_GColab.ipynb)
 * [はじめてRを使ってみる：Google Colab編](./startR_GColab.ipynb)
 * [Google Colab でバイオインフォマティクス（導入編）](../biopython/arrangeNuc.ipynb)
