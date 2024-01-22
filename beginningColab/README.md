@@ -20,8 +20,8 @@
 
 ## 別ページに書いた情報
 * [Google Colaboratoryでのファイルのアップロード](../misc/ColabUploadFile.md)
-* [はじめてPythonで統計解析をしてみる（Google Colab編）](../biostats/beginningColab/startPython_GColab.ipynb)
-* [はじめてRを使ってみる：Google Colab編](../biostats/beginningColab/startR_GColab.ipynb)
+* [はじめてPythonで統計解析をしてみる（Google Colab編）](./startPython_GColab.ipynb)
+* [はじめてRを使ってみる：Google Colab編](./startR_GColab.ipynb)
 * [Google Colab でバイオインフォマティクス（導入編）](../biopython/arrangeNuc.ipynb)
 * [納豆菌の培地の違いによる遺伝子発現比較](../biostats/exp_natto)
 
