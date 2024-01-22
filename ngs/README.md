@@ -91,20 +91,32 @@ $ wc -l SRR6504026_1.fastq
 
 ### fastqcのインストール
 ```
+# Ubuntuの場合
+$ sudo apt install fastqc
+
 # Homebrewの場合
 $ brew -v install fastqc
 ```
 
+### 実行例
 ```
-$ fastqc
+$ fastqc --nogroup -o DRR1234567.fastq
 ```
 
 
+## トリミング
+* クオリティの悪いリードを除去したり、リード中のクオリティの低い部分を削ることをトリミングという
+* trim-galoreはトリミングを行うソフトの１つである
 
-## 足切り
-
+### trim-galoreのインストール
 ```
-$ trimgalore
+# Ubuntuの場合
+$ sudo apt install trim-galore
+```
+
+### 実行例
+```
+$ trim_galore --paired --illumina --fastqc -o trimmed/ DRR1234567.R1.fastq DRR1234567.R2.fastq
 ```
 
 
