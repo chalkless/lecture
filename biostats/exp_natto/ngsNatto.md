@@ -1,0 +1,12 @@
+- データの取得
+  - DDBJ Search
+  - Sequence Read Archive と BioProject
+  - データ構造について
+  - DDBJ Searchをいくつかの切り口で検索してみる
+    - NBRC
+    - 生物種
+- 今回 用いるデータ
+  - Transcriptome analysis of Bacillus subtilis NBRC 16449 grown on surface of boiled soybeans under the similar condition to production of Japanese traditional soybean-fermented food "natto"
+  - https://ddbj.nig.ac.jp/search/entry/bioproject/PRJNA431298
+- データの見方：データ構造にしたがって
+  - 3つのBioSample
