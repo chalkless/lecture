@@ -42,7 +42,27 @@
  * [SRA](https://ncbi.nlm.nih.gov/sra)
  * [ENA](https://www.ebi.ac.uk/ena/browser/home)
  * [DRA](https://www.ddbj.nig.ac.jp/dra/index.html)
- 
+
+#### メタデータ構造の変遷 
+* NGSデータの検索やリードデータのダウンロードの際はメタデータの構造を知っておくとよい
+ * メタデータ＝メインのデータを説明するデータ。この場合はreadデータを説明する実験条件のデータ
+ * 昔のバージョン（単純用）
+  * ![](images/sra.str.old.png)
+  * DDBJのサイトより
+ * 現在：StudyとSampleが外出しされてBioProjectとBioSampleになった（NGSデータから派生して発現データ[GEOに収録]やゲノム[GenBank Nucleotideに収録]も共通に管理するため）
+  * ![](images/sra_object.png)
+  * https://www.ddbj.nig.ac.jp/dra/metadata.html より
+ * 現在のもののさらなるイメージ図
+  * ![](images/sra.str.geo.png)
+#### データ構造
+  * Study：プロジェクトの説明（例：菌株1000株読みますプロジェクト）、成果論文
+  * Sample：各々のサンプルの説明：種名、株名、臓器名など
+  * Experiment：各々のサンプルをシーケンシングした際の条件：single/pair end、シーケンサー名、ライブラリ試薬など
+  * Run：リードデータそのものの説明。この下にリードデータがぶら下がる
+  * Submission：登録データ：登録日など
+  * Analysis：NGSデータを解析した場合のデータ
+
+
 
 ### fasterq-dump のインストール
 * fastq-dumpやそれを高速化したfasterq-dumpはsra-toolkitとして配布されている
