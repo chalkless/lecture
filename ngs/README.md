@@ -29,7 +29,7 @@
     * そのまま (NGS) と頭文字でないけど略語で通したり、also known as next-generation sequencing technology (NGS) と書いたりする。
 
 ## NGS解析の概要
-
+![NGSデータ解析の流れ](images/ngsanalysisflow.jpeg)
 
 ## NGSデータの入手
 ### 主要な流れ
