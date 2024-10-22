@@ -1,3 +1,16 @@
+# 遺伝子発現解析（納豆菌編）のためのNGS解析
+
+## このページは...
+- Python (Google Colab.) やExcelで遺伝子発現解析をする方法
+  - [Python（on Google Colab）で遺伝子発現解析（納豆菌編）](./expNattoByPythonOnColab.ipynb)：Google Colabバージョン。（ipynbファイル）
+  - [Excel でなぞる遺伝子発現解析（納豆菌編）](./expNattoByExcel.md)：Excel版
+- このデータはGEOの元データで配布されている、すでに発現データにされたものを加工して用いている
+- このページは別に登録されたNGSデータ（readデータ）から発現データまでをNGS解析としてなぞったときにどうなるかを解説している
+- そのため、このページで得られた結果の発現量データと、GEOで配布された発現量データが同じである保証はない。
+
+## そもそもNGSとは
+- [NGS解析解説](../../ngs/README.md)
+
 - データの検索
   - DDBJ Search
   - Sequence Read Archive と BioProject
