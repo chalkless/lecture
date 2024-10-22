@@ -20,7 +20,7 @@
   * パイロシーケンシング法以外の原理のシーケンサーも登場
   * 数百 bp を読む short read だけでなく、15,000 bp を読むlong read（ただしそこまで並列度は高くない）
   * 現在はshortとlongを組み合わせて読むのが主流に（ゲノム配列解読の場合）：リピート配列をまたぐようにlongでつなげてshortで精度を上げる
-  * ↑ shortだとIllumina社。longだとPacBio社。
+  * ↑ shortだと[Illumina社](https://jp.illumina.com/systems/sequencing-platforms.html)。longだと[PacBio社](https://www.pacb.com/japan/)。
 * もうNGSが出て10年 経ってるけどまだ次世代とか? 新型とか?
   * 新大阪駅は60年（1964年～）。新京極通りは152年（1872年 [明治5年]）（2024年現在）
   * とはいえ、論文にnew/next-generationと書くともう古いだろうと言われることはある
@@ -28,13 +28,21 @@
     * high-throuphput DNA sequencing（高スループットDNAシーケンシング）
     * そのまま (NGS) と頭文字でないけど略語で通したり、also known as next-generation sequencing technology (NGS) と書いたりする。
 
+## NGS解析の概要
 
 
 ## NGSデータの入手
 ### 主要な流れ
 * データベースでデータを検索
 * データのアクセッション番号を控える
-* サイトからデータをダウンロード後にfasterq-dumpで展開 or　データのアクセッション番号からfasterq-dumpで入手して展開
+* サイトからデータをダウンロード後にfasterq-dumpで展開 or データのアクセッション番号からfasterq-dumpで入手して展開
+
+### 実際の検索
+* NCBI（SRA: Sequence Read Archive）、EBI (ENA: European Nucleotide Archive)、DDBJ（DRA: DDBJ Sequence Read Archive）の3か所で収集・提供。これら3か所は互いのデータを交換し合っている。検索しやすいところで検索して番号を控えて別の場所からダウンロードしてもいい
+ * [SRA](https://ncbi.nlm.nih.gov/sra)
+ * [ENA](https://www.ebi.ac.uk/ena/browser/home)
+ * [DRA](https://www.ddbj.nig.ac.jp/dra/index.html)
+ 
 
 ### fasterq-dump のインストール
 * fastq-dumpやそれを高速化したfasterq-dumpはsra-toolkitとして配布されている
