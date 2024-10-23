@@ -16,6 +16,90 @@
     - Trinity
 
 
+## ゲノムにマッピング
+- いずれ書く（と思う）
+
+## transcriptにマッピング：salmon
+### 概要
+- salmon：https://combine-lab.github.io/salmon/
+- kallistoを使ってもいい。salmonとほぼ同等
+
+
+### インストール
+```
+# Ubuntuの場合
+$ sudo apt install salmon
+```
+```
+# Macの場合
+$ brew install salmon
+```
+```
+# conda環境の場合
+$ conda install salmon
+```
+
+### reference の配列を取ってくる
+- Ensembl から
+- XXXbaseから
+
+### referenceに対してindexをつくる
+- indexをつくる
+
+```
+$ salmon index -t ~/bio/data/px/px.transcript.fasta.gz -i px_idx
+```
+```
+# 解説
+  salmon   コマンド名
+  index    サブコマンド名
+  -t [CDSセットのファイル名]
+  -i [作成インデックス名]
+```
+  - 実行すると当該インデックスのディレクトリができる（この場合は```px_idx```）
+
+
+### referenceに対してmapping＋定量する
+
+```
+$ salmon quant -i px_idx -l A -1 P-1_1.fastq.gz -2 P-1_2.fastq.gz -p 8 -o output/ --validateMappings
+```
+- quant：サブコマンド
+- -l A ：おまじない（ファイルの中身を自動判別する）
+- --validateMappings：おまじない（よっぽどでなければつけておけ、と怒られる）
+- −1/−2：ペアエンドなので、それぞれの後ろにペアでリードのファイルを指定する
+- -p 8：プロセス数。どのくらい並列で実行するか。CPUの性能依存
+- -o：出力先
+
+
+### 計算結果
+- 計算結果として、出力先として指定したoutputディレクトリ内にquant.sfファイルができている。
+
+```
+Name    Length  EffectiveLength TPM     NumReads
+KPJ20932.1      711     559.556 0.044363        1.000
+KPJ21050.1      189     50.772  26.890816       55.000
+KPJ21177.1      723     571.553 0.086862        2.000
+KPJ21437.1      273     123.872 0.000000        0.000
+KPJ21572.1      288     138.239 0.000000        0.000
+...
+```
+- TPMが発現量に相当する値
+  - ≒ 当該CDSに対応づいたリード数 / リードの長さ
+
+- ログを見てマップ率くらいは確認しておいてもいい
+```
+$ less output/logs/salmon_quant.log
+...
+[2019-02-01 14:29:44.644] [jointLog] [info] Counted 47,109,324 total reads in the equivalence classes
+[2019-02-01 14:29:44.651] [jointLog] [info] Mapping rate = 86.3888%
+
+[2019-02-01 14:29:44.651] [jointLog] [info] finished quantifyLibrary()
+...
+```
+
+
+
 ## Trinity
 
 ### インストール
@@ -46,62 +130,6 @@ TransDecoder.LongOrfs -t Trinity.fasta -m 30
 - -m アミノ酸配列の最小値。初期値は100。これを下回ると出力されない
 - -O 出力先（Ver.5.5.0以降）。初期値は 配列ファイル名.transdecoder_dir/ 。この中に longest_orfs.pep ができる
 
-## salmon
-### 概要
-- https://combine-lab.github.io/salmon/
-
-### インストール
-```
-$ conda install salmon
-```
-もしくは
-```
-$ brew install salmon
-```
-
-### reference の配列を取ってくる
-- Ensembl から
-- XXXbaseから
-
-### referenceに対してindexをつくる
-- indexをつくる
-
-```
-$ salmon index -t ~/bio/data/px/px.transcript.fasta.gz -i px_idx
-$ salmon index -t [CDSセットのファイル名] -i [インデックス名]
-```
-
-### referenceに対してmapping＋定量する
-
-```
-$ salmon quant -i px_idx/ -l A -1 P-1_1.fastq.gz -2 P-1_2.fastq.gz -p 8 -o output/ --validateMappings
-```
-- -l A ：おまじない（ファイルの中身を自動判別だったかな）
-- --validateMappings：おまじない（よっぽどでなければつけておけ、と怒られる）
-
-
-
-計算結果として、出力先として指定したoutputディレクトリ内にquant.sfファイルができている。
-
-```
-Name    Length  EffectiveLength TPM     NumReads
-KPJ20932.1      711     559.556 0.044363        1.000
-KPJ21050.1      189     50.772  26.890816       55.000
-KPJ21177.1      723     571.553 0.086862        2.000
-KPJ21437.1      273     123.872 0.000000        0.000
-KPJ21572.1      288     138.239 0.000000        0.000
-...
-```
-ログを見てマップ率くらいは確認しておく
-```
-$ less output/logs/salmon_quant.log
-...
-[2019-02-01 14:29:44.644] [jointLog] [info] Counted 47,109,324 total reads in the equivalence classes
-[2019-02-01 14:29:44.651] [jointLog] [info] Mapping rate = 86.3888%
-
-[2019-02-01 14:29:44.651] [jointLog] [info] finished quantifyLibrary()
-...
-```
 
 ## この先の機能アノテーション
 
