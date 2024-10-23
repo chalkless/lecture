@@ -67,19 +67,97 @@
   ```
   - _1と_2があるのはペアエンドだから
 
+## クオリティチェックとトリミング
+- 
+
+
 ## マッピング先cDNAデータのダウンロード
 - リードデータから発現量にするのに3つの方法がある
   - cDNA（transcript）データにマッピングする ← 今回はこれ
   - ゲノムデータにマッピングする：別途、どの領域が遺伝子かのデータも対応づける
   - de novo assemble：ゲノム配列などがよくわかっていない生物などはリードデータからtranscript候補を組み上げて、その量で発現量とする
-- データをどこからダウンロードするか（解説編）
-  - Ensembl（http://ensembl.org/） ← 今回はこれ
-    - データがきれいにまとまっている
-    - 表向きはヒト、マウス、ラット、ゼブラフィッシュなどのメジャーどころ（＋脊椎動物?）。ページ最下部にEnsembl PlantやEnsembl Fungi、Ensemble Bacteriaなどの分類群ごとにまとまった別ページへのリンクがある
-    - 意外とAsia（シンガポール）のブランチサーバーが落ちているので、アメリカかイギリスのミラーサイトにアクセスする：https://www.ensembl.org/info/about/mirrors.html （もしくは"Ensembl mirror"でググる）
-  - NCBI Datasets（旧：NCBI Genome）から
-    - 生物種名を入力。スペルをミスったりするので、NCBI Taxonomyで検索してGenomeに飛んでもいい。が、いろいろ出てくるので、どれを選んでいいのかわからないところはある。CompletenessやContig数で判断したりする。
-  - 専門のデータベース
-    - コミュニティで独自に作られたデータベースでデータを公開している場合がある（例：[WormBase](https://wormbase.org/)、[FlyBase](https://flybase.org/)）
+- データをどこからダウンロードするか（解説編）：https://github.com/chalkless/lecture/edit/master/ngs/read2transcript.md#reference-%E3%81%AE%E9%85%8D%E5%88%97%E3%82%92%E5%8F%96%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B
 - データをどこからダウンロードするか（実践編）
+  - 今回はEnsemblから取ってくる
+  - https://www.ensembl.org/index.html ← たまにサイトが落ちるのでUSかUKのミラーサイトを使う。”Ensembl mirror”でググる
+  - 一番下に行くとEnsembl Bacteriaがあるのでクリック
+  - "Search for a genome" 欄に学名を打ち込む → "Bacillus subtilis subsp. natto BEST195 (GCA_000209795)"が候補に出てくる
+  - 右カラム "Gene annotation" 欄 "Download genes, cDNAs, ncRNA, proteins" でFASTAをクリック
+  - ![Ensemblの画面](../../ngs/images/ensembl_natto.jpeg)
+  - cdsやcdnaと複数の選択肢が出るがcdsでいいと思う。（詳しい違いは各々のディレクトリのREADMEに載っている）
+  - 今回は "Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz	" をダウンロード（当該ファイルの上で右クリックしてリンクをコピー）
+  ```
+  $ wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-60/fasta/bacteria_118_collection/bacillus_subtilis_subsp_natto_best195_gca_000209795/cds/Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz
+  ```
 
+### cDNAデータのindexを作成する
+- mappingにはsalmonを用いる。他にkallistoもあるが昨日は同等：[salmonについて](../..//ngs/read2transcript.md#transcript%E3%81%AB%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0salmon)
+- 愚直にマッピングするとものすごく時間とマシンパワーを有するのであらかじめindex（目次、索引）を作っておいて高速化する
+```
+$ salmon index -t Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz -i idx_natto
+```
+```
+  - salmon：コマンド
+  - index：サブコマンド
+  - -t：cDNAのファイル。gz圧縮をほどかなくてもそのまま指定できる。頭の数文字を打ってTABボタンを押せば候補が出てくる
+  - -i：インデックス名
+```
+- idx_nattoフォルダができる（数秒程度で）
+
+### マッピングと定量
+```
+$ salmon quant -i idx_natto -l A -1 SRR6504026_1_val_1.fq -2 SRR6504026_2_val_2.fq -p 8 -o rslt_liquid/ --validateMappings
+```
+```
+  - salmon：コマンド
+  - quant：サブコマンド
+  - -i：インデックスフォルダ名
+  - −1/-2：リードファイル
+  - -o：結果出力先
+  - -l A：おまじない（＝とりあえずつけておく）。実体はファイルの中身を自動判別して処理する
+  - -p 8：プロセス数。並列計算数。CPUの性能に依存
+  -　--validateMappings：おまじない。実体は確認しながらマッピング処理を行う（というようなことだと思う）
+```
+- この場合、rslt_liquid ディレクトリに quant.sf ができる
+```
+$ head quant.sf 
+Name    Length  EffectiveLength TPM     NumReads
+ENSB:_1XWrIT46nDdyh5    717     525.871 71.657219       1341.109
+ENSB:GfT3g8CHnN8MWkg    1353    1161.805        127.648109      5278.036
+ENSB:zqGUN6Rb66DCmFS    558     367.433 20.189275       264.012
+ENSB:47g597rrPiMeJYR    600     409.161 211.411210      3078.555
+ENSB:48iL_8XOhA8j-pI    1329    1137.805        1.926203        78.000
+ENSB:TPyWKGy9qGJ-nWA    342     158.964 9.250693        52.336
+ENSB:40DIObYMiE_-44L    984     792.805 405.289652      11435.541
+ENSB:8pLse09_WnAhiSG    363     178.297 98.978792       628.075
+ENSB:n6UL2gFSmVuWHhS    576     385.307 14.293029       196.000
+```
+- 参考までにマッピング率も確認できる
+```
+$ less logs/salmon_quant.log 
+...
+[2024-10-23 01:32:18.239] [jointLog] [info] Mapping rate = 75.32%
+...
+```
+
+### 発現データの中身
+- TPMが発現量にあたる：TPM ＝ Transcripts Per Kilobase Million
+- マップされたリード数が多いと発現量が多い ＋ 遺伝子長が長いとマップされたリード数が増える → リード数を遺伝子の長さで正規化して単位長さあたりのリード数にする
+
+- どの遺伝子かはCDSファイルの中身と付き合わせる
+```
+$ gunzip -c Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz | head -1
+>ENSB:_1XWrIT46nDdyh5 cds primary_assembly:ASM20979v2:Chromosome:3322700:3323416:-1 gene:ENSB:_1XWrIT46nDdyh5 gene_biotype:protein_coding transcript_biotype:protein_coding gene_symbol:lutA_2 description:Lactate utilization protein A
+```
+```
+# EnsemblのCDSファイルをダウンロードした場所にあるREADMEより
+>TRANSCRIPT_ID SEQTYPE LOCATION GENE_ID GENE_BIOTYPE TRANSCRIPT_BIOTYPE
+
+Example of an Ensembl CDS header:
+
+>ENST00000525148.1 cds chromosome:GRCh37:11:66188562:66193526:1 gene:ENSG00000174576.1 gene_biotype:protein_coding transcript_biotype:nonsense_mediated_decay
+ ^                 ^   ^                                        ^                      ^                           ^
+ TRANSCRIPT_ID     |   LOCATION                                 GENE_ID                GENE_BIOTYPE                TRANSCRIPT_BIOTYPE
+                SEQTYPE
+```
+- 本来はCDSファイルのFASTAファイルでヘッダ行を加工してTranscript ID、遺伝子シンボル、遺伝子名と対応づけられるといいかもしれない
