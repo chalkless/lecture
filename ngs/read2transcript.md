@@ -40,8 +40,14 @@ $ conda install salmon
 ```
 
 ### reference の配列を取ってくる
-- Ensembl から
-- XXXbaseから
+- Ensembl（http://ensembl.org/） ← 今回はこれ
+  - データがきれいにまとまっている
+  - 表向きはヒト、マウス、ラット、ゼブラフィッシュなどのメジャーどころ（＋脊椎動物?）。ページ最下部にEnsembl PlantやEnsembl Fungi、Ensemble Bacteriaなどの分類群ごとにまとまった別ページへのリンクがある
+  - 意外とAsia（シンガポール）のブランチサーバーが落ちているので、アメリカかイギリスのミラーサイトにアクセスする：https://www.ensembl.org/info/about/mirrors.html （もしくは"Ensembl mirror"でググる）
+- NCBI Datasets（旧：NCBI Genome）から
+  - 生物種名を入力。スペルをミスったりするので、NCBI Taxonomyで検索してGenomeに飛んでもいい。が、いろいろ出てくるので、どれを選んでいいのかわからないところはある。CompletenessやContig数で判断したりする。
+- 専門のデータベース
+  - コミュニティで独自に作られたデータベースでデータを公開している場合がある（例：[WormBase](https://wormbase.org/)、[FlyBase](https://flybase.org/)）
 
 ### referenceに対してindexをつくる
 - indexをつくる
