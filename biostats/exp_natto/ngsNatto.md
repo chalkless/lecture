@@ -68,8 +68,43 @@
   - _1と_2があるのはペアエンドだから
 
 ## クオリティチェックとトリミング
-- 
-
+- Quality Checkは```fastqc```、トリミング（クオリティが低い部分を足切りする）は（さまざまなツールがあるが）```trim-galore```というツールがある。
+- trim-galoreをかけると中でfastqcもやってくれるのでいきなりトリミングの操作に進む
+- [trim-galoreについて](https://github.com/chalkless/lecture/tree/master/ngs#%E3%83%88%E3%83%AA%E3%83%9F%E3%83%B3%E3%82%B0)
+```
+$ trim-galore --paired --illumina --fastqc -o trimmed_SRR6504026 SRR6504026_1.fastq SRR6504026_2.fastq
+```
+```
+  - trim-galore：コマンド名
+  - --paired：ペアエンド
+  - --illumina：Illuminaで得られたリード（アダプター配列なる業者独自のシーケンスがリードについているのでこれを除去するため）
+  - --fastqc：fastqcもかける
+  - -o：出力先
+  - SRR6504026_1.fastq/SRR6504026_2.fastq：リードを指定
+```
+```
+$ ls -alF trimmed_SRR6504026/
+合計 9722120
+drwxrwxr-x 2 chalkless chalkless       4096 10月 23 00:55 ./
+drwxrwxr-x 5 chalkless chalkless       4096 10月 23 01:10 ../
+-rw-rw-r-- 1 chalkless chalkless       3587 10月 23 00:51 SRR6504026_1.fastq_trimming_report.txt
+-rw-rw-r-- 1 chalkless chalkless 4979743958 10月 23 00:53 SRR6504026_1_val_1.fq     ← トリミングされたリード・その1
+-rw-rw-r-- 1 chalkless chalkless     659895 10月 23 00:54 SRR6504026_1_val_1_fastqc.html
+-rw-rw-r-- 1 chalkless chalkless     407090 10月 23 00:54 SRR6504026_1_val_1_fastqc.zip
+-rw-rw-r-- 1 chalkless chalkless       3784 10月 23 00:53 SRR6504026_2.fastq_trimming_report.txt
+-rw-rw-r-- 1 chalkless chalkless 4973520680 10月 23 00:53 SRR6504026_2_val_2.fq     ← トリミングされたリード・その2
+-rw-rw-r-- 1 chalkless chalkless     666371 10月 23 00:55 SRR6504026_2_val_2_fastqc.html
+-rw-rw-r-- 1 chalkless chalkless     415992 10月 23 00:55 SRR6504026_2_val_2_fastqc.zip
+```
+- どのくらい足切りされたか
+```
+$ ls -alFh 02_fastq/SRR6504026_?.fastq 
+-rw-rw-r-- 1 chalkless chalkless 5.9G 10月 23 00:46 02_fastq/SRR6504026_1.fastq
+-rw-rw-r-- 1 chalkless chalkless 5.9G 10月 23 00:46 02_fastq/SRR6504026_2.fastq
+$ ls -alFh 03_trimmed/SRR6504026_?_val_?.fq 
+-rw-rw-r-- 1 chalkless chalkless 4.7G 10月 23 01:10 03_trimmed/SRR6504026_1_val_1.fq
+-rw-rw-r-- 1 chalkless chalkless 4.7G 10月 23 01:10 03_trimmed/SRR6504026_2_val_2.fq
+```
 
 ## マッピング先cDNAデータのダウンロード
 - リードデータから発現量にするのに3つの方法がある
