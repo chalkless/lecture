@@ -38,7 +38,7 @@
 ## 実験データのダウンロード
 - experiment/sampleに紐づいたrunのページからダウンロードできる
 - 配布形式
-  - fastqファイル：シーケンスとそのクオリティ（品質）について記載されたファイル（DDBJからは取得できる場合もある）：[詳細](https://github.com/chalkless/lecture/blob/master/ngs/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0)
+  - fastqファイル：シーケンスとそのクオリティ（品質）について記載されたファイル（DDBJからは取得できる場合もある）：[詳細](https://github.com/chalkless/lecture/blob/master/ngs/README.md#ngs%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E5%B8%83%E5%BD%A2%E5%BC%8F)
   - sraファイル：fastqファイルと実験情報をまとめて圧縮したファイル（NCBIはこの形式のみ配布）
 - 実際のダウンロード
   - fasterq-dump（sra-toolkitに同梱）でIDを指定すればsraファイルのダウンロードとfastqファイルへの展開をやってくれる
