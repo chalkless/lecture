@@ -106,9 +106,44 @@ $ less output/logs/salmon_quant.log
 
 
 
-## Trinity
+## de novo assembleしての発現解析：Trinity
+- ゲノムやcDNAがわかっていない生物での発現解析はマッピングする先がないのでReadデータから擬似的にtranscriptを構築し、その量で発現解析する。
 
 ### インストール
+```
+# Ubuntuの場合
+$ apt search trinity
+ソート中... 完了
+全文検索... 完了  
+berkeley-express/jammy 1.5.3+dfsg-2 amd64
+  Streaming quantification for high-throughput sequencing
+
+berkeley-express-doc/jammy,jammy 1.5.3+dfsg-2 all
+  Documentation for RNA-Seq tool eXpress
+
+game-data-packager/jammy,jammy 68 all
+  Installer for game data files
+
+ruby-fix-trinity-output/jammy,jammy 1.0.0-2 all
+  Fix output fastq files from trinityrnaseq
+
+transdecoder/jammy,jammy 5.0.1-5 all
+  find coding regions within RNA transcript sequences
+
+transdecoder-doc/jammy,jammy 5.0.1-5 all
+  find coding regions within transcripts
+
+trinity/jammy 1.9+git20200331.4d2343bd18c7b-2 amd64     ← これではない
+  system call fuzz tester
+
+trinityrnaseq/jammy 2.13.2+dfsg-3 amd64     ← こっち
+  RNA-Seq De novo Assembly
+
+trinityrnaseq-examples/jammy,jammy 2.13.2+dfsg-3 all
+  RNA-Seq De novo Assembly common example and testing files
+
+$ sudo apt install trinityrnaseq
+```
 
 ### FASTQからtranscriptへ
 
