@@ -169,7 +169,7 @@ $ fastqc --nogroup -o DRR1234567.fastq
 ### trim-galoreのインストール
 ```
 # Ubuntuの場合
-$ sudo apt install trim-galore
+$ sudo apt install trim_galore
 ```
 
 ### 実行例
