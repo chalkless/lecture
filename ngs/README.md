@@ -180,7 +180,7 @@ $ trim_galore --paired --illumina --fastqc -o trimmed/ DRR1234567.R1.fastq DRR12
 
 ## その後の処理
 * NGS実験を行った目的によって処理が変わっていく
-  * RNA-Seq（発現解析）：ゲノムやcDNAにマッピングする
+  * [RNA-Seq（発現解析）](function4NGS.md)：ゲノムやcDNAにマッピングする。ゲノムやcDNAがない場合はde novo assemble（Readだけでtranscriptを構築）
   * SNP解析：ゲノムに精度良くマッピングして１塩基単位での変異を検出
   * ゲノム解析：つないでいく。Long readのデータとShort readのデータを組み合わせるのがトレンド
   * メタゲノム：つないでいく。株レベルの差異は無視して（バーチャルな）ゲノムに組み上げていくMAG(Metagenome Assembled Genome)がトレンド
