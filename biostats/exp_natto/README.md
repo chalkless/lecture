@@ -3,7 +3,7 @@
 - [Excel でなぞる遺伝子発現解析（納豆菌編）](./expNattoByExcel.md)：Excel版
 
 ### 利用データ
-一度クリックして開いてからデータの１行上・右側のボタンからダウンロードのこと
+一度クリックして開いてからデータの１行上・右側のボタン（→] を90度回転させた形）からダウンロードのこと（「Download raw data」）
 - [タブ区切りテキスト形式版](Bsubtilis_exp.for_lec.0613.txt)
 - [Excel版](Bsubtilis_exp.for_lec.0614.xlsx)：Excel形式。テキスト形式が読み込めない場合用（クラウド版Excelなど）
 
