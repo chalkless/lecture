@@ -12,6 +12,10 @@
 - [Python（on Google Colab）で遺伝子発現解析（納豆菌編）](exp_natto/expNattoByPythonOnColab.ipynb)：同じデータをGoogle Colabでやってみる用。（ipynbファイル）
 - [遺伝子発現解析（納豆菌編）のためのNGS解析](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)：上記の納豆菌解析は論文の著者が途中まで解析した遺伝子発現データを用いているが、それを最初のNGSリードから解析した時の方法
 
+## はじめて統計処理をする人向け
+- [Google Colab](../beginningColab/)
+- [R](./beginningR/)
+
 ## 他
 - [Excelで可視化する新型コロナデータ](covid19/Covid19ByExcel.md)：Covid-19の患者数の推移をExcelで取り込んである都道府県の患者数の推移を折れ線グラフにしてみたり、ある日の患者数を都道府県別に棒グラフや円グラフ、日本地図にマップする
 - Rで可視化する新型コロナデータ：上のR版。作成中
