@@ -48,5 +48,5 @@ $ conda install rstudio
 
 ## 実践編
 - [はじめてRをさわってみる](../learningR.Rmd)：R Markdownを使って、クリックするだけでRの動きを確認できるようにしてみた（RStudioで開いてください）
-- [はじめてRを使ってみる：Google Colab編](./startR_GColab.ipynb)
+- [はじめてRを使ってみる：Google Colab編](../startR_GColab.ipynb)
 - [生物統計](../)：ここにもいくつかRで書いたものがあるので参考のこと
