@@ -4,7 +4,7 @@
 
 ## 今回利用するデータ
 - GSE109523 ：Transcriptome analysis of Bacillus subtilis NBRC 16449 grown on surface of boiled soybeans under the similar condition to production of Japanese traditional soybean-fermented food "natto" https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE109523
-- 日本語訳：Bacillus subtilis（枯草菌・こそうきん）NBRC 16449株における日本の伝統的な大豆発酵食品 納豆の生産と同条件下における茹でた大豆の表面での成長時のトランスクリプトーム（全遺伝子発現）解析
+- 日本語訳：*Bacillus subtilis*（枯草菌・こそうきん）NBRC 16449株における日本の伝統的な大豆発酵食品 納豆の生産と同条件下における茹でた大豆の表面での成長時のトランスクリプトーム（全遺伝子発現）解析
 - 今回はこれを加工したデータを用いる ([Bsubtilis_exp.for_lec.0613.txt](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0613.txt))。あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 ### 生物学的背景
 - 生物の遺伝情報はDNAに記録されていて（＝コードされている）、必要な時に必要な遺伝子を使うしくみになっている
@@ -13,35 +13,25 @@
 - 今回は、液体培地と寒天培地とゆでた大豆の表面という3つの状態だが（ここではそのうち2つの状態について扱うが）これらの状態はどういう遺伝子変化をもたらすだろうか???
 
 ### 今回の対象となる生物について
-- いわゆる納豆菌のデータ。学名は Bacillus subtilis subsp. natto。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。Bacillus subtilis自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomyの当該ページ](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=86029&lvl=3&lin=f&keep=1&srchmode=1&unlock)
+- いわゆる納豆菌のデータ。学名は *Bacillus subtilis subsp. natto*。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。*Bacillus subtilis*自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomyの当該ページ](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=86029&lvl=3&lin=f&keep=1&srchmode=1&unlock)
 - NBRCはBiological Resource Center, NITE (National Institute of Technology and Evaluation) （日本語名：（独）製品評価技術基盤機構 バイオテクノロジーセンター）のこと。経産省系の独法であるNITE（ナイト）では企業等のもっている有用微生物を寄託・譲渡してもらい、（半永久的に）保存するとともに、他の企業等に提供して産業に役立てている。
 - 今回の納豆菌もNBRCのコレクションとしてストックしてある。
 - NBRC 16449とは、菌株番号のこと。コレクション機関名 + 固有番号 といった形式になっている。
 - NBRCとして保有している菌株は[DBRP](https://www.nite.go.jp/nbrc/dbrp/top) (Data and Biological Resource Platform) から取得できる。
 - たとえば菌株番号で検索すると[Bacillus subtilis NBRC 16449の株情報](https://www.nite.go.jp/nbrc/dbrp/dataview?dataId=STNB0000000016449) が取得できる。生育温度や分離源、培地などの情報が得られる。
 
-### [補足] GEOからの遺伝子発現データの取得
+### [補足] データを得る実験と公共データベースでの登録
 - 今回のデータは元データを加工して解析できるようにしているが、その「元データの加工」の部分をこのセクションは書いている（ので、ここGitHubにアップされているデータを使う分にはここの操作はしなくてよい）
 - 今回は、すぐにExcelで開けるように加工済のデータになっているが、元々の配布されているデータは別形式（＋実験データだけでなく実験条件の情報付き）なのでそのままでは使えない。
-- GEO (Gene Expression Omnibus) は、NCBIが集めている遺伝子発現のデータベース
-  - もともとはマイクロアレイのデータベースだったがNGS（次世代シーケンサー）が出てきてRNA-Seqのデータもここに入ることになり、今は遺伝子発現データのデータベースとなっている。
-  - てなわけで今はNGSデータの方がはやりなのだが、NGSデータの解析自体で1回の講義になってしまうレベルだし、コマンドラインや計算機リソースを駆使するような計算なので、今回はある程度そのあたりを計算済ということでマイクロアレイのデータを例とする。
-- あらためまして、GEOのサイトにアクセスするのだが、今回は混乱を避けるために測定データセットを検索するサイトを示しておく。 https://www.ncbi.nlm.nih.gov/gds/
-- 生物種名や生命現象を検索ボックスに入れて、どのようなデータがあるか楽しんでみましょう
-  - 詳細まで見るといくつかのパターンがあることがわかります
-    - 正常と疾患/変異株/薬剤処理など状態を2群間で比較するデータ
-    - ある状態下でのさまざまな臓器など多サンプル間で比較するデータ
-    - 薬剤処理後の時間経過ごと、発生ステージなどなどの時系列データ
-- 今回は、GSE109523 ：Transcriptome analysis of Bacillus subtilis NBRC 16449 grown on surface of boiled soybeans under the similar condition to production of Japanese traditional soybean-fermented food "natto" https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE109523 を用いる。
-- Samples の項目を見ると、どういうサンプル（試料・材料）を使って実験をしたかが書いてあります
-  - 上の比較データか、時系列データか意識して、どれがセットか考えるといいでしょう
-  - 場合によっては同じようなデータを何回もとっているものがあります。
-    - 同じサンプルを何回か測定：technical replicates。1つの個体・細胞から複数の測定サンプルをつくることで実験操作を相殺する
-    - 別個体で何回か測定：biological replicates。複数の個体・細胞から測定サンプルをつくることで個体差を相殺する
-- その下のところに実際の遺伝子発現データがダウンロードできる形で置いてあるが、単純な表にはなっていないので加工が必要な場合が多い（実験情報がくっついているので、そのままではExcelで開けない。いや開けるけど、頭とか末尾を削らないといけない）
-  - SOFT formatted family file(s)
-  - Series Matrix File(s)
-- 今回は、ラッキーな例で元データがExcelで公開されている。
+- （ある生体物質）「全部で」という実験をオミックス（omics）実験と言う。今回は転写産物（transcript）＋全部でtranscriptome実験（もしくは発現解析）というように呼ぶ
+- ゲノム（genome。全遺伝子、というか全DNA配列）やトランスクリプトーム解析には次世代シーケンサー（Next-generation Sequencing: NGS）を用いる。
+- NGS実験の結果はSequence Read Archive (SRA) というデータベースに集められている。今回は1実験あたり100bpのDNA断片（Read）が1800万本 ×2のデータが収録されている。
+- これをジグソーパズルしてつなげることで、遺伝子とその発現量（何コピー分。どのくらい使われているか）に統計処理した発現データはGEO (Gene Expression Omnibus) というデータベースに入っている。
+- そして、これらの一連の実験はBioProjectというデータベースからたどれるようになっている。
+- 今回の一連の実験はこちら
+  - Transcriptome analysis of Bacillus subtilis NBRC 16449 grown on surface of boiled soybeans under the similar condition to production of Japanese traditional soybean-fermented food "natto" https://ddbj.nig.ac.jp/search/entry/bioproject/PRJNA431298
+- [参考] NGSリードデータから発現値に直すところ：[遺伝子発現解析（納豆菌編）のためのNGS解析](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)
+- 今回のデータは、実験した登録者が解析してGEOに登録したデータを加工して用いている。
 - （わかる人向けの参考の中の参考情報）発現値（どのくらい遺伝子がタンパク質にするために読まれているか）がA_RPKM、B_RPKM、C_RPKMに書かれている。今回は、これをliquid, bean, agarと書き換えている。また、ここでは1回しか実験していないのだが、適当に（正規分布で乱数を発生させて）平均が元々の値になるように2つの実験のようにみせかけたデータを作成した。
 
 ## 解析の目標
