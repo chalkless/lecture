@@ -41,14 +41,22 @@
 ### ファイルを開く
 - いきなりつまずく人が多発する鬼門ポイントです。。。
 - Excelを立ち上げる
+- 補足：大量データを扱う時は、えてしてカンマ区切りファイル（CSV：Comma separated value）かタブ区切りファイル（TSV：TAB separated value）を用います。データの区切りが,（カンマ）かタブ（特殊なスペース）かの違いです
 - 今回はタブ区切り（tsv: tab separated value）なので、テキストファイル（Windowsでいうところのメモ帳で開くファイル。Excel形式でないもの）として読み込む
+  - [参考] メモ帳的なもので開いた時
+![メモ帳的なもので開いた時](./images/Bsubtilis_data_view.png)
   - Windowsの場合：
     - シートの上にファイルをドラッグ&ドロップすると開くようです。開かない例として、ダウンロードすると「最近使ったファイルリスト」のようなところにファイルがリストされる場合があるようです。その場合はファイルを右クリックして、「保存されているフォルダを開く」のようなものを一度はさんで再度 表示し直すとドラッグできるようになります。
     - もしくは、ファイル > 開く で、ファイルの形式をExcel形式でなくタブ区切りファイル（もしくはテキストファイル）を選択するとファイルのリストに表示される（or 選択できるようになる）
   - Macの場合：ファイル > インポート から（拡張子が.txtや.tsvでない場合は、これらに変更しないといけないかもしれない）
+    - どの形式か問うダイアログ
+    ![どの形式か問うダイアログ](./images/excel_import.png)
   - Excel Online （クラウド版Excel）の場合：なぜかインポート機能がないので、あらかじめデスクトップ版ExcelやGoogle Spreadsheetで開いてExcel形式で保存し、それを開く。→ 今回はExcel版もここにアップしてある（[Bsubtilis_exp.for_lec.0614.xlsx](https://github.com/chalkless/lecture/raw/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0614.xlsx)）
 - 読み込みのダイアログが出た場合：区切り記号付き → 区切り文字 タブ などと選びながら次へを押していく
+  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue1.png)
+  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue2.png) 
   - 各列のデータタイプで遺伝子名が書かれた列は標準でなく文字列を選ぶとOct4問題は回避できる
+  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue3.png)
   - Oct4問題：Excelのおせっかいで、遺伝子名Oct4が、勝手に日付だと解釈されてしまう問題。実際の値が、2020/10/4などとその年の10月4日になってしまうので、早い話が遺伝子名が消されてしまう。OctXやSepXの遺伝子で起きる。
 - 無事に開ける
 - **[ファイルの保存]** 何はともあれファイルの保存。ファイル > **名前をつけて保存** で Excelブックとして保存
@@ -57,6 +65,7 @@
 - 今回はFeature_ID、Protein_ID、Product、liquid_1、liquid_2、bean_1、bean_2、agar_1、agar_2 というデータ構成になっている。
 - 全部で4,272行（うち先頭はタイトル行）。画面の分割をすると楽である。
   - 表示タブ > 分割
+    ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_split.png)
   - 線をドラッグすると分割場所を動かせる。端まで持って行くと分割解除
   - 下半分のウインドウのどこかのセルを選択し、スクロールバーをドラッグして末尾へ。
 
