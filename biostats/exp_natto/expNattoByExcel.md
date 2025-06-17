@@ -53,10 +53,10 @@
     ![どの形式か問うダイアログ](./images/excel_import.png)
   - Excel Online （クラウド版Excel）の場合：なぜかインポート機能がないので、あらかじめデスクトップ版ExcelやGoogle Spreadsheetで開いてExcel形式で保存し、それを開く。→ 今回はExcel版もここにアップしてある（[Bsubtilis_exp.for_lec.0614.xlsx](https://github.com/chalkless/lecture/raw/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0614.xlsx)）
 - 読み込みのダイアログが出た場合：区切り記号付き → 区切り文字 タブ などと選びながら次へを押していく
-  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue1.png)
-  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue2.png) 
+  - ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue1.png)
+  - ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue2.png) 
   - 各列のデータタイプで遺伝子名が書かれた列は標準でなく文字列を選ぶとOct4問題は回避できる
-  ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue3.png)
+  - ![](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/images/excel_import_dialogue3.png)
   - Oct4問題：Excelのおせっかいで、遺伝子名Oct4が、勝手に日付だと解釈されてしまう問題。実際の値が、2020/10/4などとその年の10月4日になってしまうので、早い話が遺伝子名が消されてしまう。OctXやSepXの遺伝子で起きる。
 - 無事に開ける
 - **[ファイルの保存]** 何はともあれファイルの保存。ファイル > **名前をつけて保存** で Excelブックとして保存
@@ -70,6 +70,7 @@
   - 下半分のウインドウのどこかのセルを選択し、スクロールバーをドラッグして末尾へ。
 
 ### 各実験の値が比較可能かを確認する
+- まずシートをコピーして元のデータをうっかり書き換えないようにする
 - データの列には実験ごとに遺伝子の発現量が数値で入っている
 - ちらちら眺めると0に近い値から千まで数値があるような
 #### 各実験の代表的な統計値で実験値が比較可能か確認する
@@ -84,9 +85,10 @@
   - ![最大値、最小値、中央値、平均値の結果](./images/excel_function.png)
 - 考察：左2列がliquid（液体培地）、真ん中2列がbean（ゆで大豆の表面）、右2つがagar（寒天培地）。これからその2列どうしの数値の平均をとるが、特に中央値や平均値が大きくずれていないので、2列のデータの分布はほぼ同じそうだと期待でき、特に補正（正規化という）をせずに先に進むこととする。（すでに補正済のデータが登録されていたのかもしれない）
 #### 各実験でのデータの分布を可視化して直接的に比較する
+##### 各データのヒストグラム
 - 各データが取る範囲はヒストグラムで確認できる。描画したいデータの範囲（例：D2..D4272）をドラッグして挿入タブ → グラフのところの「統計」→ ヒストグラム
 - しかし、グラフが幅広い割に0に近いところにほとんどのデータがあってよくわからない
-  ![](./images/excel_histogram_tmp.png)
+  - ![](./images/excel_histogram_tmp.png)
 - そこで各値の対数を取る。
   - なぜ対数?
     - 桁数のブレが大きい時に桁数を圧縮できる
@@ -95,9 +97,30 @@
   - J2で：log関数を用いる。`=log(`と入力すると引数のヘルプがポップアップで出てくる。`=log(値,底)`。今回は`=log(D2,2)`となる。（底は2とする）
   - J2をコピーして、J3〜J4272にコピーする。J3をクリックして、J4272をShiftを押しながらクリックしてペースト。
 - 改めてJ2..J4272でヒストグラムを描いてみる。割ときれいな山の形になる
-  ![](./images/Bsubtilis_histogram.png)
+  - ![](./images/Bsubtilis_histogram.png)
+- （補足）場合によってはデータはそのままでグラフを描く時に軸を対数にする片対数グラフ/両対数グラフというやり方もできます。
+- 同様にliquid_2とbean_1も対数を取ってみる
+- log(liquid_2)のヒストグラムも描いてみて形が似ていることを確認する。（山頂部分の麓部分の数字）
+##### 散布図での2つのデータの比較
+- 各遺伝子ごとに横軸と縦軸で2つの実験データを描画する散布図を描いてみる
+- J1（log_liquid1のラベル）をクリック
+- Shiftを押しながらK4272（log(liquid_2)の最後のデータ）をクリックする
+- 挿入タブ → 散布図
+- 同様にJ1クリック → L4272をShift+クリックして散布図を描く：この場合は横軸がlog(liquid_1)で、縦軸がlog(liquid_2)とlog(bean_1)の両方が描画されるが、簡単のためにこのままにする。
+  - ![](./images/Bsubtilis_scatter_compare.png)
+- 2回の実験で、特にliquid_1とliquid_2は同じ条件で実験しているはずなので理想的には値も同じはず。つまりy=xのグラフに載るのが理想。
+- liquid_1とbean_1は遺伝子の使われ方が違うので少し値がぶれている（グラフが広がっている）ことを確認する
+- せっかくなので、どのくらい値が似ているかを相関係数で示してみる。
+  - 相関係数は−1〜1をとる数字。0だと相関なし。1に近いほど（正の）相関が高い。−1に近いほど負の相関（逆相関）
+  - Googleで調べると`=correl(範囲1,範囲2)`で調べるらしい
+  - log(liquid_2)の一番下（K4272）ででも：`=correl(`と入れる → log(liquid_1)の指定：J2をクリックしてJ4272をShift+クリック → ,を入力 → log(liquid_2)の指定：K2をクリックしてK4272をShift+クリック
+  - 同様にL4273（log(bean_1)の一番下）ででもlog(liquid_1)とlog(bean_1)の相関係数を調べる
+  - 結果
+    - log(liquid_1) vs　log(liquid_2)= 0.977625526
+    - log(liquid_1) vs　log(bean_1)  = 0.837418738
 
 ### 2つの状態での発現量を比較する
+- ここでもシートをコピーして元のデータをうっかり書き換えないようにする
 #### 2回の実験の平均をとる
 - 左2列のliquid、真ん中2列のbeanをそれぞれ2回実験をしたとみなして、誤差を補正するために平均をとることとする。一般的には3回以上の実験（通称 n=3。nとは実験回数のこと）が望ましいとされている。
 - **これは各遺伝子で2回の実験の平均をとる作業**
