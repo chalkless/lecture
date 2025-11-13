@@ -111,7 +111,7 @@ $ ls -alFh 03_trimmed/SRR6504026_?_val_?.fq
   - cDNA（transcript）データにマッピングする ← 今回はこれ
   - ゲノムデータにマッピングする：別途、どの領域が遺伝子かのデータも対応づける
   - de novo assemble：ゲノム配列などがよくわかっていない生物などはリードデータからtranscript候補を組み上げて、その量で発現量とする
-- [データをどこからダウンロードするか（解説編）](https://github.com/chalkless/lecture/edit/master/ngs/read2transcript.md#reference-%E3%81%AE%E9%85%8D%E5%88%97%E3%82%92%E5%8F%96%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B)
+- [データをどこからダウンロードするか（解説編）](https://github.com/chalkless/lecture/blob/master/ngs/read2transcript.md#reference-%E3%81%AE%E9%85%8D%E5%88%97%E3%82%92%E5%8F%96%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B)
 - データをどこからダウンロードするか（実践編）
   - 今回はEnsemblから取ってくる
   - https://www.ensembl.org/index.html ← たまにサイトが落ちるのでUSかUKのミラーサイトを使う。”Ensembl mirror”でググる
