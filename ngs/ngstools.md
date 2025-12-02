@@ -53,7 +53,7 @@ fastqc --nogroup -o DRR1234567.fastq
 ```
 - `--nogroup`をつけるとより細かく結果を出してくれる
 
-### trim-galore
+## trim-galore
 - NGSリードをトリミングするツール
 - https://github.com/FelixKrueger/TrimGalore
 - 中身はクオリティチェックをする`fastqc`とトリミングする`cutadapt`をまとめて行っているだけ
