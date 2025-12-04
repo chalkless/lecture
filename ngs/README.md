@@ -5,8 +5,12 @@
 - NGS（次世代シーケンス解析）とは・原理とデータの入手：現状はこのページ。いずれ移す
 - NGSデータの前処理：現状はこのページ。いずれ移す
 - [トランスクリプトーム解析・その1：リードデータから発現値データまで（リードデータ → 関連データのダウンロード → マッピング → 発現値データ）](https://github.com/chalkless/lecture/blob/master/ngs/read2transcript.md)
-- [トランスクリプトーム解析・その2：発現値データから差のある遺伝子セットの作成まで（実践編）（整理中）](https://github.com/chalkless/lecture/tree/master/biostats)
+- トランスクリプトーム解析・その2：発現値データから差のある遺伝子セットの作成まで（整理中）
 - [トランスクリプトーム解析・その3：差のある遺伝子セットの機能解析（整理中）](https://github.com/chalkless/lecture/blob/master/ngs/function4NGS.md)
+
+### 納豆菌の遺伝子発現データでの実践編
+- [トランスクリプトーム解析（実践編）リードデータ → 関連データのダウンロード → マッピング → 発現値データ）](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)
+- [トランスクリプトーム解析（実践編）発現値データから差のある遺伝子セットの作成まで](https://github.com/chalkless/lecture/tree/master/biostats/exp_natto)
 
 
 ## そもそもNGSとは
