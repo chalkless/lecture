@@ -6,7 +6,8 @@
 ### （optional） 生物統計部分で処理するデータをNGS解析で作成する
 - [遺伝子発現解析（納豆菌編）のためのNGS解析](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)：以下の納豆菌の発現データ解析は論文の著者が途中まで解析したものを用いているが、それを最初のNGSリードから解析した時の方法
 
-### 納豆菌の遺伝子発現解析：発現データ → 発現の増えた/減った遺伝子セットの作成 → 遺伝子の発現変動のあった遺伝子群の機能解析
+### 納豆菌の遺伝子発現解析：発現データ
+- 発現の増えた/減った遺伝子セットの作成 → 遺伝子の発現変動のあった遺伝子群の機能解析
 - [Excel でなぞる遺伝子発現解析（納豆菌編）](exp_natto/expNattoByExcel.md)：Excel版
 - [Python（on Google Colab）で遺伝子発現解析（納豆菌編）](exp_natto/expNattoByPythonOnColab.ipynb)：Google Colabでやってみる用。（ipynbファイル）
 
