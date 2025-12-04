@@ -2,7 +2,7 @@
 
 ## 目次
 - [関連ツールのインストール](https://github.com/chalkless/lecture/blob/master/ngs/ngstools.md)
-- NGS（次世代シーケンス解析）とは：現状はこのページ。いずれ移す
+- NGS（次世代シーケンス解析）とは・原理とデータの入手：現状はこのページ。いずれ移す
 - NGSデータの前処理：現状はこのページ。いずれ移す
 - [トランスクリプトーム解析・その1：リードデータから発現値データまで（リードデータ → 関連データのダウンロード → マッピング → 発現値データ）](https://github.com/chalkless/lecture/blob/master/ngs/read2transcript.md)
 - [トランスクリプトーム解析・その2：発現値データから差のある遺伝子セットの作成まで（実践編）（整理中）](https://github.com/chalkless/lecture/tree/master/biostats)
