@@ -2,15 +2,20 @@
 
 もともと講義で話す用。講義に出ない（多学科の）人も見たいそうだから、せっかくなので一般公開しておく。
 
+## 納豆菌の培地の違いによる遺伝子発現比較
+### （optional） 生物統計部分で処理するデータをNGS解析で作成する
+- [遺伝子発現解析（納豆菌編）のためのNGS解析](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)：以下の納豆菌の発現データ解析は論文の著者が途中まで解析したものを用いているが、それを最初のNGSリードから解析した時の方法
+
+### 納豆菌の遺伝子発現解析：発現データ → 発現の増えた/減った遺伝子セットの作成 → 遺伝子の発現変動のあった遺伝子群の機能解析
+- [Excel でなぞる遺伝子発現解析（納豆菌編）](exp_natto/expNattoByExcel.md)：Excel版
+- [Python（on Google Colab）で遺伝子発現解析（納豆菌編）](exp_natto/expNattoByPythonOnColab.ipynb)：Google Colabでやってみる用。（ipynbファイル）
+
+
 ## シロイヌナズナの分化/未分化細胞での遺伝子発現比較
 - [Excelでなぞる遺伝子発現解析](exp/expByExcel.md)：普通はプログラミングかR言語でするような遺伝子発現解析を、Excelで試しに（できる部分だけ）やってみようという試み
 - [R言語で遺伝子発現解析](exp/expByR.Rmd)：マイクロアレイデータを例にRで遺伝子発現解析をしてみた（内容は上のExcelでなぞる遺伝子発現解析と同じ）。RStudioで開く用（Rmarkdownで記述）
 - [R言語で遺伝子発現解析(Google Colab編)](exp/expByROnGColab.ipynb)：上のR言語で遺伝子発現解析と中身は同様。RStudioでなくGoogle Colaboratory (Google Colab)で開く用。ipynbファイル。（作成中）
 
-## 納豆菌の培地の違いによる遺伝子発現比較
-- [Excel でなぞる遺伝子発現解析（納豆菌編）](exp_natto/expNattoByExcel.md)：諸般の事情で微生物のデータでの遺伝子発現解析（Excel版）
-- [Python（on Google Colab）で遺伝子発現解析（納豆菌編）](exp_natto/expNattoByPythonOnColab.ipynb)：同じデータをGoogle Colabでやってみる用。（ipynbファイル）
-- [遺伝子発現解析（納豆菌編）のためのNGS解析](https://github.com/chalkless/lecture/blob/master/biostats/exp_natto/ngsNatto.md)：上記の納豆菌解析は論文の著者が途中まで解析した遺伝子発現データを用いているが、それを最初のNGSリードから解析した時の方法
 
 ## はじめて統計処理をする人向け
 - [Google Colab](../beginningColab/)
