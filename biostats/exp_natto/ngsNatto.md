@@ -48,8 +48,11 @@
     ```
   - ただダウンロードからやると時間がかかるので（多分、NCBIからダウンロードすると想像されるため）、自分でDDBJからダウンロードして fasterq-dump でファイルを指定する方が早い
     ```
-    $ wget https://ddbj.nig.ac.jp/public/ddbj_database/dra/sralite/ByExp/litesra/SRX/SRX359/SRX3592650/SRR6504026/SRR6504026.sra
-    $ fasterq-dump SRR6504026.sra
+    wget https://ddbj.nig.ac.jp/public/ddbj_database/dra/sralite/ByExp/litesra/SRX/SRX359/SRX3592650/SRR6504026/SRR6504026.sra
+    ```
+
+    ```
+    fasterq-dump SRR6504026.sra
     ```
   - 2025年現在、DDBJ SRAからSRRxxxxxxやERRxxxxxxの形式のファイルをダウンロードしようとするとエラーが出るようになっている。
     - 解決策1：EBIかNCBIでSRRxxxxxxの形式のIDで検索して、ダウンロードする
