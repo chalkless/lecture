@@ -51,6 +51,9 @@
     $ wget https://ddbj.nig.ac.jp/public/ddbj_database/dra/sralite/ByExp/litesra/SRX/SRX359/SRX3592650/SRR6504026/SRR6504026.sra
     $ fasterq-dump SRR6504026.sra
     ```
+  - 2025年現在、DDBJ SRAからSRRxxxxxxやERRxxxxxxの形式のファイルをダウンロードしようとするとエラーが出るようになっている。
+    - 解決策1：EBIかNCBIでSRRxxxxxxの形式のIDで検索して、ダウンロードする
+    - 解決策2：ファイル自体はたとえば`https://ddbj.nig.ac.jp/public/ddbj_database/dra/sralite/ByExp/litesra/SRX/SRX359/SRX3592650/SRR6504026/`の下にあるので、SRXxxxxxxの番号からあてはめてダウンロードサイトを開き、ファイルをダウンロードする
   - [fasterq-dumpについて](https://github.com/chalkless/lecture/blob/master/ngs/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%A8%E5%B1%95%E9%96%8B)
   - この場合は3条件あるので3つのsraファイルをダウンロードして展開する
   ```
