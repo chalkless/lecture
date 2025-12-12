@@ -85,7 +85,7 @@
 - trim-galoreをかけると中でfastqcもやってくれるのでいきなりトリミングの操作に進む
 - [trim-galoreについて](https://github.com/chalkless/lecture/tree/master/ngs#%E3%83%88%E3%83%AA%E3%83%9F%E3%83%B3%E3%82%B0)
 ```
-$ trim-galore --paired --illumina --fastqc -o trimmed_SRR6504026 SRR6504026_1.fastq SRR6504026_2.fastq
+$ trim_galore --paired --illumina --fastqc -o trimmed_SRR6504026 SRR6504026_1.fastq SRR6504026_2.fastq
 ```
 ```
   - trim-galore：コマンド名
