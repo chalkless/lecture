@@ -40,7 +40,7 @@ $ conda install salmon
 ```
 
 ### reference の配列を取ってくる
-- Ensembl（http://ensembl.org/）
+- Ensembl（ http://ensembl.org/ ）
   - データがきれいにまとまっている
   - 表向きはヒト、マウス、ラット、ゼブラフィッシュなどのメジャーどころ（＋脊椎動物?）。ページ最下部にEnsembl PlantやEnsembl Fungi、Ensemble Bacteriaなどの分類群ごとにまとまった別ページへのリンクがある
   - 意外とAsia（シンガポール）のブランチサーバーが落ちているので、アメリカかイギリスのミラーサイトにアクセスする：https://www.ensembl.org/info/about/mirrors.html （もしくは"Ensembl mirror"でググる）
