@@ -135,7 +135,7 @@ $ ls -alFh 03_trimmed/SRR6504026_?_val_?.fq
   - cdsやcdnaと複数の選択肢が出るがcdsでいいと思う。（詳しい違いは各々のディレクトリのREADMEに載っている）
   - 今回は "Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz	" をダウンロード（当該ファイルの上で右クリックしてリンクをコピー）
   ```
-  $ wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-60/fasta/bacteria_118_collection/bacillus_subtilis_subsp_natto_best195_gca_000209795/cds/Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz
+  wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-60/fasta/bacteria_118_collection/bacillus_subtilis_subsp_natto_best195_gca_000209795/cds/Bacillus_subtilis_subsp_natto_best195_gca_000209795.ASM20979v2.cds.all.fa.gz
   ```
 
 ### cDNAデータのindexを作成する
