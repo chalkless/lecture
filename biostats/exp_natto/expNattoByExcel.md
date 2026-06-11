@@ -3,7 +3,7 @@
 普通はプログラミングかR言語でするような遺伝子発現解析を、Excelで試しに（できる部分だけ）やってみようという試み
 
 ## 今回利用するデータ
-- [Bsubtilis_exp.for_lec.0613.txt](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0613.txt)：あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」
+- [Bsubtilis_exp.for_lec.0613.txt](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0613.txt)：あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 - 元となったデータ：GSE109523 ：Transcriptome analysis of Bacillus subtilis NBRC 16449 grown on surface of boiled soybeans under the similar condition to production of Japanese traditional soybean-fermented food "natto" https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE109523
 - 日本語訳：*Bacillus subtilis*（枯草菌・こそうきん）NBRC 16449株における日本の伝統的な大豆発酵食品 納豆の生産と同条件下における茹でた大豆の表面での成長時のトランスクリプトーム（全遺伝子発現）解析
 - 今回はこれを加工したデータを用いる
