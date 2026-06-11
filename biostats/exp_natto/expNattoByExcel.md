@@ -8,12 +8,12 @@
 - 今回はこれを加工したデータを用いる ([Bsubtilis_exp.for_lec.0613.txt](https://raw.githubusercontent.com/chalkless/lecture/master/biostats/exp_natto/Bsubtilis_exp.for_lec.0613.txt))。あらかじめダウンロードしておく。（右クリックして「名前をつけて保存」）
 ### 生物学的背景
 - 生物の遺伝情報はDNAに記録されていて（＝コードされている）、必要な時に必要な遺伝子を使うしくみになっている
-- たとえば、今回の枯草菌では4.12Mb（mega base。megaは100万。baseは塩基対。ようするに412万塩基対）のDNAを持っていて、およそ4500の遺伝子を持っている（出展元：[NCBI Genome](https://www.ncbi.nlm.nih.gov/genome/?term=txid86029[Organism:noexp])）
+- たとえば、今回の枯草菌では4.12Mb（mega base。megaは100万。baseは塩基対。ようするに412万塩基対）のDNAを持っていて、およそ4500の遺伝子を持っている（出展元：[NCBI Genome](https://www.ncbi.nlm.nih.gov/datasets/genome/?taxon=86029)）
 - 「必要な時に必要な遺伝子を使うしくみになっている」とは、たとえば植物なら、葉になるときは光合成のための遺伝子発現が必要だが、根だと光合成の遺伝子発現は不要（なので不要ならmRNAが転写されない、ということ）。今回は微生物だが、たとえば、アミノ酸が周りに豊富にあれば、わざわざアミノ酸を生合成するための酵素は発現しなくてよいが、飢餓状態なら発現が必要、ということ。
 - 今回は、液体培地と寒天培地とゆでた大豆の表面という3つの状態だが（ここではそのうち2つの状態について扱うが）これらの状態はどういう遺伝子変化をもたらすだろうか???
 
 ### 今回の対象となる生物について
-- いわゆる納豆菌のデータ。学名は *Bacillus subtilis subsp. natto*。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。*Bacillus subtilis*自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomyの当該ページ](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=86029&lvl=3&lin=f&keep=1&srchmode=1&unlock)
+- いわゆる納豆菌のデータ。学名は *Bacillus subtilis subsp. natto*。（subsp. = subspecies。亜種）。種扱いにして Bacillus nattoという名前になっていたり、変種扱いにしてBacillus subtilis var. natto という名前になっている時もある。*Bacillus subtilis*自体は枯草菌（枯草菌）と呼ばれている。生物学でよく使われる（よく出てくる生物ABCDEのB。← 学名の頭文字をとっている） → 参考：[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/datasets/taxonomy/86029/)
 - NBRCはBiological Resource Center, NITE (National Institute of Technology and Evaluation) （日本語名：（独）製品評価技術基盤機構 バイオテクノロジーセンター）のこと。経産省系の独法であるNITE（ナイト）では企業等のもっている有用微生物を寄託・譲渡してもらい、（半永久的に）保存するとともに、他の企業等に提供して産業に役立てている。
 - 今回の納豆菌もNBRCのコレクションとしてストックしてある。
 - NBRC 16449とは、菌株番号のこと。コレクション機関名 + 固有番号 といった形式になっている。
